@@ -1,2 +1,7 @@
+# View size
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
+
+# Players ship, hitbox as a circle
+PLAYER_RADIUS = 20
+LINE_WIDTH = 2

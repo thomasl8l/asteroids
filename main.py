@@ -1,6 +1,7 @@
 import pygame
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from logger import log_state
+from player import Player
 
 
 def main():
@@ -16,6 +17,9 @@ def main():
     # The delta time, for logging time per cycle
     dt = 0.0
 
+    # The player sprite, centered in the view
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT /2)
+
     # The game loop, infinite
     while True:
         log_state()
@@ -23,7 +27,12 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+
+        # Draw the background
         screen.fill("black")
+
+        # Draw player in view
+        player.draw(screen)
 
         # Finally, refresh screen
         pygame.display.flip()
