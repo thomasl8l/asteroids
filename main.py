@@ -14,7 +14,7 @@ def main():
 
     # Manage frames per second (FPS)
     clock = pygame.time.Clock()
-    # The delta time, for logging time per cycle
+    # The delta time, for one frame
     dt = 0.0
 
     # The player sprite, centered in the view
@@ -31,12 +31,14 @@ def main():
         # Draw the background
         screen.fill("black")
 
+        # Position player for this frame
+        player.update(dt)
         # Draw player in view
         player.draw(screen)
 
         # Finally, refresh screen
         pygame.display.flip()
-        # Restrict to 60fps
+        # Restrict to 60fps; convert to seconds
         dt = clock.tick(60) / 1000
 
 
