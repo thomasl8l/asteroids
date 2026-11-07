@@ -11,6 +11,12 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # Manage frames per second (FPS)
+    clock = pygame.time.Clock()
+    # The delta time, for logging time per cycle
+    dt = 0.0
+
+    # The game loop, infinite
     while True:
         log_state()
         # Handle any input events
@@ -21,6 +27,8 @@ def main():
 
         # Finally, refresh screen
         pygame.display.flip()
+        # Restrict to 60fps
+        dt = clock.tick(60) / 1000
 
 
 if __name__ == "__main__":
