@@ -2,12 +2,16 @@
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
 
-# Players ship, hitbox as a circle
+# Player's ship, hitbox as a circle
 PLAYER_RADIUS = 20
 LINE_WIDTH = 2
 
 PLAYER_TURN_SPEED = 300
 PLAYER_SPEED = 200
+PLAYER_SHOOT_SPEED = 500
+
+# Shots fired from ship
+SHOT_RADIUS = 5
 
 # Asteroids
 ASTEROID_MIN_RADIUS = 20
