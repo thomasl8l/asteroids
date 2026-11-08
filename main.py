@@ -17,13 +17,18 @@ def main():
     # The delta time, for one frame
     dt = 0.0
 
-    # The player sprite, centered in the view
+    # Create groups for sprites
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    # Initialize player sprite, centered in the view
+    Player.containers = (updatable, drawable)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT /2)
 
     # The game loop, infinite
     while True:
         log_state()
-        # Handle any input events
+        # Handle quit events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
@@ -31,10 +36,11 @@ def main():
         # Draw the background
         screen.fill("black")
 
-        # Position player for this frame
-        player.update(dt)
-        # Draw player in view
-        player.draw(screen)
+        # Position sprites for this frame
+        updatable.update(dt)
+        # Draw sprites in view
+        for sprite in drawable:
+            sprite.draw(screen)
 
         # Finally, refresh screen
         pygame.display.flip()
