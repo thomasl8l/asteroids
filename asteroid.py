@@ -2,6 +2,7 @@ import pygame
 import random
 from logger import log_event
 from circleshape import CircleShape
+from shot import Shot
 from constants import (
     LINE_WIDTH,
     ASTEROID_MIN_RADIUS
@@ -12,11 +13,16 @@ class Asteroid(CircleShape):
     def __init__(self, x: float, y: float, radius: float) -> None:
         super().__init__(x, y, radius)
 
-    def split(self) -> None:
+    def split(self, shot: Shot) -> None:
         self.kill()
         # Maybe split into smaller asteroids
         if self.radius <= ASTEROID_MIN_RADIUS:
             return
+        # Adjust vector based on impact with shot
+        # (a.vel * a.mass + b.vel * b.mass) / total_mass = velocity
+        self.velocity = (
+            (self.momentum() + shot.momentum()) / (self.mass + shot.mass)
+        )
         # Make two new smaller asteroids
         log_event("asteroid_split")
         angle = random.uniform(20, 50)

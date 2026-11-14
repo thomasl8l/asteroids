@@ -15,6 +15,10 @@ class CircleShape(pygame.sprite.Sprite):
         self.position: pygame.Vector2 = pygame.Vector2(x, y)
         self.velocity = pygame.Vector2(0, 0)
         self.radius = radius
+        self.mass = radius ** 2
+
+    def momentum(self) -> pygame.Vector2:
+        return self.velocity * self.mass
 
     def collides_with(self, other: "CircleShape") -> bool:
         min_distance = self.radius + other.radius
