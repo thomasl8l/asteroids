@@ -33,6 +33,10 @@ class Asteroid(CircleShape):
             self.position.x, self.position.y, new_radius
         )
         asteroid_2.velocity = vel_2 * 1.2
+        # Ensure they are not colliding
+        while asteroid_1.collides_with(asteroid_2):
+            asteroid_1.position += asteroid_1.velocity * 0.1
+            asteroid_2.position += asteroid_2.velocity * 0.1
 
     def draw(self, screen: pygame.Surface) -> None:
         pygame.draw.circle(
