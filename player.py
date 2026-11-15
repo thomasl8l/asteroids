@@ -32,7 +32,7 @@ class Player(CircleShape):
         unit_vector = pygame.Vector2(0, 1)
         rotated_vector = unit_vector.rotate(self.rotation)
         rotated_with_speed_vector = rotated_vector * PLAYER_SPEED * dt
-        self.position += rotated_with_speed_vector
+        self.velocity += rotated_with_speed_vector
 
     def shoot(self) -> None:
         if self.shoot_timer > 0:
@@ -63,3 +63,4 @@ class Player(CircleShape):
         # Shoot
         if keys[pygame.K_SPACE]:
             self.shoot()
+        self.position += self.velocity * dt

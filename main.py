@@ -66,11 +66,11 @@ def main():
                 if asteroid.collides_with(asteroid_2):
                     asteroid.bounce_off(asteroid_2)
                     break
-        for asteroid in asteroids:
             if player.collides_with(asteroid):
-                log_event("player_hit")
-                print("Game over!")
-                sys.exit()
+                player.bounce_off(asteroid)
+              #   log_event("player_hit")
+              #   print("Game over!")
+              #   sys.exit()
 
         # Finally, refresh screen
         pygame.display.flip()
