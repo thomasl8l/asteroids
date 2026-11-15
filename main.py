@@ -36,7 +36,7 @@ def main():
 
     # Initialize asteroids
     Asteroid.containers = (asteroids, updatable, drawable)
-    AsteroidField.containers = (updatable)
+    # AsteroidField.containers = (updatable)
     asteroid_field = AsteroidField()
 
     # The game loop, infinite
@@ -52,6 +52,8 @@ def main():
 
         # Position sprites for this frame
         updatable.update(dt)
+        if len(asteroids) < 50:
+            asteroid_field.update(dt)
         # Draw sprites in view
         for sprite in drawable:
             sprite.draw(screen)
