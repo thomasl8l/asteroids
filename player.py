@@ -1,4 +1,5 @@
 import pygame
+import sys
 from circleshape import CircleShape
 from shot import Shot
 from constants import (
@@ -63,4 +64,9 @@ class Player(CircleShape):
         # Shoot
         if keys[pygame.K_SPACE]:
             self.shoot()
+        # Quit game
+        if keys[pygame.K_q]:
+            print("Stopped game")
+            sys.exit()
+        # Move player
         self.position += self.velocity * dt
