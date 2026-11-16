@@ -52,10 +52,28 @@ def main():
 
         # Position sprites for this frame
         updatable.update(dt)
-        if len(asteroids) < 50:
+        if len(asteroids) < 10:
             asteroid_field.update(dt)
-        # Draw sprites in view
+        # Draw sprites in view, keep within bounds
         for sprite in drawable:
+            # Horizontal boundaries (Left and Right edges)
+            if sprite.position.x - sprite.radius <= 0:
+                sprite.position.x = sprite.radius  # Prevent getting stuck outside
+                sprite.velocity.x *= -1          # Reverse horizontal direction
+            
+            elif sprite.position.x + sprite.radius >= SCREEN_WIDTH:
+                sprite.position.x = SCREEN_WIDTH - sprite.radius
+                sprite.velocity.x *= -1
+            
+            # Vertical boundaries (Top and Bottom edges)
+            if sprite.position.y - sprite.radius <= 0:
+                sprite.position.y = sprite.radius  # Prevent getting stuck outside
+                sprite.velocity.y *= -1          # Reverse vertical direction
+            
+            elif sprite.position.y + sprite.radius >= SCREEN_HEIGHT:
+                sprite.position.y = SCREEN_HEIGHT - sprite.radius
+                sprite.velocity.y *= -1
+
             sprite.draw(screen)
         # Detect collisions
         for asteroid in asteroids:
