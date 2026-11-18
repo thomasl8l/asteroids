@@ -13,6 +13,21 @@ class Asteroid(CircleShape):
     def __init__(self, x: float, y: float, radius: float) -> None:
         super().__init__(x, y, radius)
 
+        self.color: pygame.Color = self.random_color()
+
+    def random_color(self) -> pygame.Color:
+        options = ["66", "99"]
+        # 1. Generate the random hex pairs
+        r_hex = random.choice(options)
+        g_hex = random.choice(options)
+        b_hex = random.choice(options)
+        # 2. Convert hex strings (base 16) to decimal integers
+        r = int(r_hex, 16)  # "66" becomes 102, "99" becomes 153
+        g = int(g_hex, 16)
+        b = int(b_hex, 16)
+
+        return pygame.Color(r, g, b)
+
     def split(self, shot: Shot) -> None:
         self.kill()
         # Maybe split into smaller asteroids

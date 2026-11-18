@@ -18,21 +18,6 @@ class CircleShape(pygame.sprite.Sprite):
         self.radius = radius
         self.mass = radius ** 2
 
-        self.color: pygame.Color = self.random_color()
-
-    def random_color(self) -> pygame.Color:
-        options = ["66", "99"]
-        # 1. Generate the random hex pairs
-        r_hex = random.choice(options)
-        g_hex = random.choice(options)
-        b_hex = random.choice(options)
-        # 2. Convert hex strings (base 16) to decimal integers
-        r = int(r_hex, 16)  # "66" becomes 102, "99" becomes 153
-        g = int(g_hex, 16)
-        b = int(b_hex, 16)
-        # 3. Create a Pygame Color object or use the tuple directly
-        return pygame.Color(r, g, b)
-
     def momentum(self) -> pygame.Vector2:
         return self.velocity * self.mass
 
