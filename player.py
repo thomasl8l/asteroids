@@ -29,9 +29,9 @@ class Player(CircleShape):
     def rotate(self, dt: float) -> None:
         self.rotation += PLAYER_TURN_SPEED * dt
 
-    def move(self, dt: float) -> None:
+    def move(self, dir: float, dt: float) -> None:
         unit_vector = pygame.Vector2(0, 1)
-        rotated_vector = unit_vector.rotate(self.rotation)
+        rotated_vector = unit_vector.rotate(dir)
         rotated_with_speed_vector = rotated_vector * PLAYER_SPEED * dt
         self.velocity += rotated_with_speed_vector
 
@@ -52,20 +52,25 @@ class Player(CircleShape):
         self.shoot_timer -= dt
         keys = pygame.key.get_pressed()
         # Rotate counter-clockwise or clockwise
-        if keys[pygame.K_a]:
+        if keys[pygame.K_q]:
             self.rotate(-dt)
-        if keys[pygame.K_d]:
+        if keys[pygame.K_e]:
             self.rotate(dt)
         # Move forward or backward
         if keys[pygame.K_w]:
-            self.move(dt)
+            self.move(180.0, dt)
         if keys[pygame.K_s]:
-            self.move(-dt)
+            self.move(0.0, dt)
+        # Move left or right
+        if keys[pygame.K_a]:
+            self.move(90.0, dt)
+        if keys[pygame.K_d]:
+            self.move(270.0, dt)
         # Shoot
         if keys[pygame.K_SPACE]:
             self.shoot()
         # Quit game
-        if keys[pygame.K_q]:
+        if keys[pygame.K_k]:
             print("Stopped game")
             sys.exit()
         # Move player
