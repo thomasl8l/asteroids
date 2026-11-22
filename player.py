@@ -52,9 +52,9 @@ class Player(CircleShape):
         self.shoot_timer -= dt
         keys = pygame.key.get_pressed()
         # Rotate counter-clockwise or clockwise
-        if keys[pygame.K_q]:
+        if keys[pygame.K_n]:
             self.rotate(-dt)
-        if keys[pygame.K_e]:
+        if keys[pygame.K_m]:
             self.rotate(dt)
         # Move forward or backward
         if keys[pygame.K_w]:
