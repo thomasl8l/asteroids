@@ -16,7 +16,7 @@ class Asteroid(CircleShape):
         self.color: pygame.Color = self.random_color()
 
     def random_color(self) -> pygame.Color:
-        options = ["66", "99"]
+        options = ["33", "66", "99"]
         # 1. Generate the random hex pairs
         r_hex = random.choice(options)
         g_hex = random.choice(options)
